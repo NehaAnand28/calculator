@@ -1,5 +1,7 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 const port = 3000;
 
 app.get("/",(req,res) => {
@@ -8,7 +10,11 @@ app.get("/",(req,res) => {
 });
 
 app.post("/",(req, res) => {
-    res.send("Thank you for posting!");
+    var num1 = Number(req.body.n1);
+    var num2 = Number(req.body.n2);
+    var sum = num1 + num2;
+
+    res.send("Sum is " + sum);
 });
 
 app.listen(port ,() => {
